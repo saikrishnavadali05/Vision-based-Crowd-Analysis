@@ -22,28 +22,6 @@ Figure 1. We formulate a novel problem to forecast the crowd
 distribution from sparsely sampled previous crowd video frames
 without knowing the individual identities. To solve this problem, we propose a prediction model that is able to learn the crowd
 dynamics to predict the crowd density in the near future. As illustrated, observing the crowd gathering behavior within the red box,
-our model manages to forecast the high-density area (indicated by
-the yellow region) ahead of time.
-Hence, in this paper, we formulate a novel yet challenging crowd distribution prediction problem. Given several
-sequential frames of a crowd video without any exact position or identity information of the individuals, our goal is
-to estimate the crowd distribution in the near future (see
-Fig. 1). To benefit long-term prediction, the provided
-frames of the crowd video are sampled sequentially yet
-sparsely over an equal interval (up to 6 seconds), and we
-aim to predict the crowd distribution of the very next frame
-in the same interval. Specifically, the reason of sampling
-input frames over a large interval is that it allows to observe
-more variations of crowd dynamics and inject contextual
-information for a longer-term prediction. Compared with
-tracking and path prediction tasks, the challenges of our
-problem is the identities or the positions of pedestrians are
-not provided in the input. Although it mitigates the laborious annotation efforts in real-world application scenarios,
-the difficulty of prediction is also increase. Besides, instead
-of predicting trajectories as outputs, we forecast the crowd
-distribution in the form of future crowd density map, which
-is informative for analyzing crowd dynamics, monitoring
-the high-density regions, and even detecting the abnormal
-crowd behavior. Furthermore, enabling the crowd density
-prediction without revealing the identities can well preserve
-the privacy of individuals in certain applications.
+our model manages to forecast the high-density area (indicated by the yellow region) ahead of time.Hence, in this paper, we formulate a novel yet challenging crowd distribution prediction problem. Given several
+sequential frames of a crowd video without any exact position or identity information of the individuals, our goal is to estimate the crowd distribution in the near future (see Fig. 1). To benefit long-term prediction, the provided frames of the crowd video are sampled sequentially yet sparsely over an equal interval (up to 6 seconds), and we aim to predict the crowd distribution of the very next frame in the same interval. Specifically, the reason of sampling input frames over a large interval is that it allows to observe more variations of crowd dynamics and inject contextual information for a longer-term prediction. Compared with tracking and path prediction tasks, the challenges of our problem is the identities or the positions of pedestrians are not provided in the input. Although it mitigates the laborious annotation efforts in real-world application scenarios, the difficulty of prediction is also increase. Besides, instead of predicting trajectories as outputs, we forecast the crowd distribution in the form of future crowd density map, which is informative for analyzing crowd dynamics, monitoring the high-density regions, and even detecting the abnormal crowd behavior. Furthermore, enabling the crowd density prediction without revealing the identities can well preserve the privacy of individuals in certain applications.
 
