@@ -101,3 +101,57 @@ medium-density of crowd motions. Compared with them,
 our approach is able to work on large crowd scenes with a
 varying density without knowing the identities of individuals in the crowd.
 Video frame prediction recently achieves significant
+
+Figure 2. Illustration of our network architecture. Our model is mainly composed of F2D-Net and D2D-Net. In particular, the input frames
+and their estimated density maps are separately fed into these two recurrent networks. After that, their output features are concatenated and
+passed through an attention-based fusion module. In the end, to strengthen the prediction, a global residual branch incorporates the motion
+information with the fused features into the final predicted density map.
+progress due to the success of Generative Adversarial Network (GAN) [11]. It is first studied to predict future frames
+for Atari game [33] and then researchers try to predict the
+future frames of natural videos [4, 16, 21, 24, 27, 28, 32, 43].
+In order to predict realistic pixel values in future frames,
+the model must be capable of capturing pixel-wise appearance and motion changes so as to let pixel values in previous frames flow into new frames. Different from these
+approaches, our prediction is based on sparsely sampled
+crowd video frames with the interval larger than 1.5 seconds. It is a much longer interval than the inputs of the
+video frame prediction methods, which brings challenges
+to our problem.
+3. Our Proposed Method
+In this section, we first present our problem formulation and then introduce our proposed network architecture.
+After that, we depict how to enhance our network by synthetic crowd data.
+3.1. Problem Formulation
+In this paper, we introduce a novel research problem for
+crowd analysis. Given a sequence of crowd video frames,
+the goal is to predict the crowd distribution in the near
+future. For forecasting crowd dynamics, it is critical to predict the crowd status in a longer period of time, so that it
+may facilitate practical applications, e.g., issuing alerts for
+over-crowd situations beforehand. To benefit the long-term
+prediction, the given crowd video frames are sampled at a
+certain equal interval (e.g. 1.5 seconds) and the task is to
+predict the crowd status at the very next time step. Hence,
+we can formulate it as:
+Dt+N∆t = F({It, It+∆t, · · · , It+(N−1)∆t}), (1)
+where the input frames of our model F are denoted
+as {It, It+∆t, · · · , It+(N−1)∆t}, which contains N frames
+sequentially sampled from video with an equal interval ∆t.
+Given the input frames, our model is required to predict the
+crowd density D at the next time step t + N∆t. We show
+two crowd density prediction examples in Fig. 3 from the
+Mall and UCSD datasets.
+3.2. Network architecture
+As illustrated in Fig. 2, we propose a global-residual
+two-stream network for predicting crowd density. In general, our framework consists of several main modules: the
+Frame-to-Density network (i.e., F2D-Net that is able to
+predict density from sequential crowd video frames), the
+Density-to-Density network (i.e., D2D-Net that predicts
+future density from sequential density maps), the density
+map estimator that estimates the crowd density from a single crowd image, the attention-based feature fusion module,
+and a global-residual branch based on the warped density
+map estimated from flow map of the input video frames.
+F2D-Net. As the first stream of our framework, F2D
+network, fed with the frames from video, is composed of a
+multi-scale convolutional blocks for extracting spatial feature from the input frames and a series of convolutional
+LSTM cell, or a ConvLSTM module to learn the spatialtemporal correlation from sequential data. As shown in
+Fig. 2, we adopt several inception blocks that contain four
+subbranches with filter size of 1 × 1, 3 × 3, 5 × 5, and 7 × 7
+for extracting multi-scale features. Then, the feature maps
+
